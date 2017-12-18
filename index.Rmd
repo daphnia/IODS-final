@@ -1,0 +1,55 @@
+---
+title: "Final Assignment"
+author: "Hans Hellén, hans.hellen@hellen.me"
+date: "Dec 18 2017"
+output: 
+  html_document:
+    theme: journal
+    toc: true
+    toc_depth: 2
+    fig_caption: true
+    fig_width: 10
+    fig_height: 8
+    code_folding: hide
+---
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 20px;
+  }
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning =FALSE, message = FALSE)
+```
+
+<!--NOTE: some functions are commented out to make the knitted output more simple.-->
+
+
+
+<!-- Make a clear structure
+-->
+#Here we GO! 
+[Here](https://github.com/daphnia/IODS-final/blob/master/data/create_final.R) is my data wrangling script. 
+
+
+```{r echo=T}
+library(MASS)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(tidyr)
+library(GGally)
+#df_Boston <- read.csv("data/Boston.csv", header=T, sep=",")
+#glimpse(df_Boston)
+```
+
+
+
+<!--
+`p <- ggpairs(r21d, mapping = aes(col=UVkas, alpha=0.3), lower = list(combo = wrap("facethist", bins = 20)))`
+`p`
+-->
