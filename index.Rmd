@@ -154,7 +154,7 @@ plot(my_best_model, which = c(1,2,5))
 
 All the plots indicates that there are problems with this model. 
 
-1. Residuals vs fitted values is a plot that can be used to check the model assumption that the residuals (ε, size of the errors) do not depend on explanatory variables but only on random variability (in other words, residuals has a constant variance ($σ^{2}$). In the plot the dots should be randomly distributed, otherwise it indicates a problem.
+1. Residuals vs fitted values is a plot that can be used to check the model assumption that the residuals (ε, size of the errors) do not depend on explanatory variables but only on random variability (in other words, residuals has a constant variance <!--$σ^{2}$-->. In the plot the dots should be randomly distributed, otherwise it indicates a problem.
     i) In this case there can be seen a clear pattern on the right side of the picture.
 2. Normal QQ-plot can be used to check, are residuals distributed normally. If they are, the dots should be aligned on the line.
     i) In these cases there are about ten outliers.
