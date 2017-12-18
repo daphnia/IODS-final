@@ -195,13 +195,13 @@ Look at the RMarkdown html document options and finalize the appearance of your 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Originally the data I will use is from Boston dataset from R package/library called MASS. This data frame is about housing values in suburbs of Boston. The original variables are explained on <a href="https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Boston.html">this</a> webpage.</p>
-<p>In short the variables are about crime rate per capita, urban planning, housing, air pollution, economy, school environment, skin colour. It is useful to have look at the original <a href="https://dx.doi.org/10.1016/0095-0696%2878%2990006-2">research article</a>, that was about air pollution and the housing values (variable medv).</p>
-<p>I will fit a linear regression model to find out <strong>what variables explain best the high criminal activity occuring in Boston</strong>. According the knowledge gained from LDA biplot done in RStudio exercise 4, my hypothesis is that the explanatory variables <em>rad, lstat, tax, ptratio, black</em> and <em>rm</em> can be used to best predict high crime rate.</p>
+<p>In short the variables are about crime rate per capita, urban planning, housing, air pollution, economy, school environment, skin colour. It is useful to have look at the original <a href="https://dx.doi.org/10.1016/0095-0696%2878%2990006-2">research article</a>, that was about air pollution, the housing values (variable medv) and willingness to pay for cleaner air.</p>
+<p>I will fit a linear regression model to find out <strong>what variables explain best the highest criminal activity occurring in Boston</strong>. According the knowledge gained from LDA biplot done in RStudio exercise 4, my hypothesis is that the explanatory variables <em>rad, lstat, tax, ptratio, black</em> and <em>rm</em> can be used to best predict high crime rate.</p>
 </div>
 <div id="data-wrangling" class="section level1">
 <h1>Data Wrangling</h1>
 <p><a href="https://github.com/daphnia/IODS-final/blob/master/data/create_final.R">Here</a> is my data wrangling script.</p>
-<p>As can clearly be seen from a histrogram of the original data below, there is a small bunch of suburbs with extreme crime rates per capita.</p>
+<p>As can clearly be seen from a histogram of the original data below, there is a small bunch of suburbs with extreme crime rates per capita.</p>
 <pre class="r"><code>data(&quot;Boston&quot;)
 p_crim &lt;- ggplot(Boston, aes(crim)) + geom_histogram(binwidth = 1, fill=&quot;purple&quot;, colour=&quot;red&quot;) + ggtitle(&quot;Histogram of per capita crime rate by town&quot;)
 p_crim</code></pre>
@@ -271,9 +271,9 @@ p_b_f</code></pre>
 </p>
 </div>
 <p>The date set has observations from 127 different towns. The target (also known as dependent, response) variable is chosen to be crim (per capita crime rate by town). Keep in mind that the variable black gets smaller values as the proportion of black population increases.</p>
-<p>From the summaries and graphics above we can already see some interesting findigs concerning the high crime towns:</p>
+<p>From the summaries and graphics above we can already see some interesting findings concerning the high crime towns:</p>
 <ul>
-<li>The <em>Zn</em> variable (proportion of residential land zoned for lots over 25,000 sq.ft.) has zero observations. We can conclude that in areas with big apartment houses, the high crime rate is unprobable. So Zn will be left out from the modelling.</li>
+<li>The <em>Zn</em> variable (proportion of residential land zoned for lots over 25,000 sq.ft.) has zero observations. We can conclude that in areas with big apartment houses, the high crime rate is improbable. So Zn will be left out from the modelling.</li>
 <li>Also there seems to be a separation into communities for black people and communities for white people. This can be seen from the scatter plot graphics: the density curve of <em>black</em> has two peaks.</li>
 <li>Also looking at the scatter plot graphics and the the density curve of <em>medv</em> with two peaks. There seems to be a small amount of towns, where the median value of owner-occupied homes are exceptionally high.</li>
 <li>Most of the houses are old (<em>age</em>).</li>
@@ -361,7 +361,7 @@ summary(my_best_model)</code></pre>
 ## Multiple R-squared:  0.2439, Adjusted R-squared:  0.2317 
 ## F-statistic:    20 on 2 and 124 DF,  p-value: 2.966e-08</code></pre>
 <p>Standard errors of regression coefficient for <em>dis</em> (1.8839) and for <em>medv</em> (0.1192), are not an order of magnitude less than the coefficients themselves (-8.6477 and -0.4811, respectively), indicating that there is some variability in the estimates for the coefficients.</p>
-<p>R-squared is about 24 %. It means that on the average only 24 % of variability in predicted crime rate can be explained by these two variables. The F-statistic indicates, would the model be better with fewer variables. In that case the p-value would be higher. Now p-value is 2.966-08 as it was in the beginning 3.864e-07. Although, this last model is better than with <em>nox</em> variable (p-valua 8.182e-09).</p>
+<p>R-squared is about 24 %. It means that on the average only 24 % of variability in predicted crime rate can be explained by these two variables. The F-statistic indicates, would the model be better with fewer variables. In that case the p-value would be higher. Now p-value is 2.966-08 as it was in the beginning 3.864e-07. Although, this last model is better than with <em>nox</em> variable (p-value 8.182e-09).</p>
 </div>
 <div id="model-validation" class="section level2">
 <h2>Model validation</h2>
@@ -376,9 +376,9 @@ plot(my_best_model, which = c(1,2,5))</code></pre>
 </div>
 <p>All the plots indicates that there are problems with this model.</p>
 <ol style="list-style-type: decimal">
-<li>Residuals vs fitted values is a plot that can be used to check the model assumption that the residuals (ε, size of the errors) do not depend on explanatory variables but only on random variability (in other words, residuals has a constant variance <span class="math inline">\(σ^{2}\)</span>. In the plot the dots should be randomly distributed, otherwise it indicates a problem.
+<li>Residuals vs fitted values is a plot that can be used to check the model assumption that the residuals (ε, size of the errors) do not depend on explanatory variables but only on random variability (in other words, residuals has a constant variance (<span class="math inline">\(σ^{2}\)</span>). In the plot the dots should be randomly distributed, otherwise it indicates a problem.
 <ol style="list-style-type: lower-roman">
-<li>In this case there can be seen a clear pattern on the right side of the picturet.</li>
+<li>In this case there can be seen a clear pattern on the right side of the picture.</li>
 </ol></li>
 <li>Normal QQ-plot can be used to check, are residuals distributed normally. If they are, the dots should be aligned on the line.
 <ol style="list-style-type: lower-roman">
@@ -393,9 +393,9 @@ plot(my_best_model, which = c(1,2,5))</code></pre>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
-<p>The model fitted could not pass the graphical model validation, so this exercise should be done again with refined data and methods. Still the model seems to be realistic, as it predicts extreme crime rates are more probable nearer the densily populated employment centres (<em>dis</em>) and where the values of homes (<em>medv</em>) are lower. Removing some outliers the distributions in scatter plots would become more linear (now being asymptotical). Unfortunately this regression analysis could not find any more socially interesting predictors among high crime rate towns.</p>
+<p>The model fitted could not pass the graphical model validation, so this exercise should be done again with refined data and methods. Still the model seems to be realistic, as it predicts extreme crime rates are more probable nearer the densely populated employment centres (<em>dis</em>) and where the values of homes (<em>medv</em>) are lower. Removing some outliers the distributions in scatter plots would become more linear (now approaching asymptotically the axes). Unfortunately this regression analysis could not find any more socially interesting predictors among high crime rate towns.</p>
 <hr />
-<p>The last time this document was knitted: Mon Dec 18 22:36:04 2017.</p>
+<p>The last time this document was knitted: Mon Dec 18 22:54:58 2017.</p>
 </div>
 
 
