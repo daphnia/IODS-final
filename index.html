@@ -147,7 +147,7 @@ $(document).ready(function () {
 <li><a href="#regression-models">Regression models</a></li>
 <li><a href="#model-validation">Model validation</a></li>
 </ul></li>
-<li><a href="#conclusions">Conclusions</a></li>
+<li><a href="#conclusions-and-discussion">Conclusions and discussion</a></li>
 </ul>
 </div>
 
@@ -391,11 +391,15 @@ plot(my_best_model, which = c(1,2,5))</code></pre>
 </ol>
 </div>
 </div>
-<div id="conclusions" class="section level1">
-<h1>Conclusions</h1>
-<p>The model fitted could not pass the graphical model validation, so this exercise should be done again with refined data and methods. Still the model seems to be realistic, as it predicts extreme crime rates are more probable nearer the densely populated employment centres (<em>dis</em>) and where the values of homes (<em>medv</em>) are lower. Removing some outliers the distributions in scatter plots would become more linear (now approaching asymptotically the axes). Unfortunately this regression analysis could not find any more socially interesting predictors among high crime rate towns.</p>
+<div id="conclusions-and-discussion" class="section level1">
+<h1>Conclusions and discussion</h1>
+<p>The model fitted could not pass the graphical model validation, so this exercise should be done again with refined data and methods. Still the model seems to be realistic, as it predicts extreme crime rates are more probable nearer the densely populated employment centres (<em>dis</em>) and where the values of homes (<em>medv</em>) are lower. Removing some outliers the distributions in scatter plots would become more linear (now approaching asymptotically the axes). Unfortunately this regression analysis could not find any more socially interesting predictors among high crime rate towns. For example, from the original Boston dataset it could be seen that towns with the most highest crime rates had also the highest or second highest values of <em>tax</em> variable. Excerpt from the original article mentioned in the introduction of this work Harrison and Rubinfeld (1978) describes the <em>tax</em> variable:</p>
+<blockquote>
+<p>Full value property tax rate ($/$1O,OOO), measures the cost of public services in each community. Nominal tax rates were corrected by local assessment ratios to yield the full value tax rate for each town. The coefficient of this variable should be negative.</p>
+</blockquote>
+<p>The last statement means that the lower the <em>tax</em> the higher is the housing values (<em>medv</em>) to be expected in the area. Crime obviously increases the cost of public services, so crim and tax are correlated. From the more succesful LDA analysis in RStudio exercise 4 <em>tax</em> seemed to classify medium–high crime areas but not at all high crime areas.</p>
 <hr />
-<p>The last time this document was knitted: Mon Dec 18 22:58:48 2017.</p>
+<p>The last time this document was knitted: Tue Dec 19 07:57:01 2017.</p>
 </div>
 
 

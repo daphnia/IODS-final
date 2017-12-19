@@ -162,8 +162,13 @@ All the plots indicates that there are problems with this model.
     i) There is clearly about five exceptional values with strong leverage and also about five other exceptional observations.
 
 
-#Conclusions
+#Conclusions and discussion
 The model fitted could not pass the graphical model validation, so this exercise should be done again with refined data and methods. Still the model seems to be realistic, as it predicts extreme crime rates are more probable nearer the densely populated employment centres (*dis*) and where the values of homes (*medv*) are lower. Removing some outliers the distributions in scatter plots would become more linear (now approaching asymptotically the axes). Unfortunately this regression analysis could not find any more socially interesting predictors among high crime rate towns. 
+For example, from the original Boston dataset it could be seen that towns with the most highest crime rates had also the highest or second highest values of *tax* variable. Excerpt from the original article mentioned in the introduction of this work Harrison and Rubinfeld (1978) describes the *tax* variable: 
+
+> Full value property tax rate ($/$1O,OOO), measures the cost of public services in each community. Nominal tax rates were corrected by local assessment ratios to yield the full value tax rate for each town. The coefficient of this variable should be negative. 
+
+The last statement means that the lower the *tax* the higher is the housing values (*medv*) to be expected in the area. Crime obviously increases the cost of public services, so crim and tax are correlated. From the more succesful LDA analysis in RStudio exercise 4 *tax* seemed to classify medium–high crime areas but not at all high crime areas.  
 
 ***
 The last time this document was knitted: `r date()`.
